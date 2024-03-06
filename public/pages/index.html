@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'
+           https://cdn.tailwindcss.com https://cdnjs.cloudflare.com; object-src 'none';">
+
+
+    <title>Personal Project</title>
+
+    <link rel="stylesheet" type="text/css" href="/styles/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <script id="vertexShaderEarth" type="x-shader/x-vertex">
+        precision highp float;
+        precision highp int;
+        varying vec2 vUv;
+        varying vec3 vertexNormal;
+
+        void main() {
+            vUv = uv;
+            vertexNormal = normalize(normalMatrix * normal);
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+    </script>
+
+    <script id="fragmentShaderEarth" type="x-shader/x-fragment">
+        uniform sampler2D earthTexture;
+        uniform sampler2D cloudTexture;
+        uniform sampler2D normalMap;
+        varying vec2 vUv;
+        varying vec3 vertexNormal;
+
+        void main() {
+            vec4 earthColor = texture2D(earthTexture, vUv);
+            vec4 cloudColor = texture2D(cloudTexture, vUv);
+
+            float intensity = 1.05 - dot(vertexNormal, vec3(0.0, 0.0, 1.0));
+            vec3 atmosphere = vec3(0.3, 0.6, 1.0) * pow(intensity, 1.5);
+
+            vec4 earthAndCloudColor = mix(earthColor, cloudColor, 0.6);
+
+            vec4 earthAndGlowColor = vec4(earthAndCloudColor.xyz + atmosphere, earthAndCloudColor.a);
+
+            gl_FragColor = earthAndGlowColor;
+        }
+    </script>
+
+    <script id="vertexShaderAtm" type="x-shader/x-vertex">
+        precision highp float;
+        precision highp int;
+        varying vec3 vertexNormal;
+
+        void main() {
+            vertexNormal = normalize(normalMatrix * normal);
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+    </script>
+
+    <script id="fragmentShaderAtm" type="x-shader/x-fragment">
+        varying vec3 vertexNormal;
+
+        void main() {
+            float intensity = pow(0.8 - dot(vertexNormal, vec3(0.0, 0.0, 1.0)), 2.0);
+            gl_FragColor = vec4(0.3, 0.6, 1.0, 1.0) * intensity;
+        }
+    </script>
+</head>
+<body>
+
+    <main class="flex">
+        <article class="w-1/2 h-screen" id="articleContainer">
+            <canvas id="articleCanvas"></canvas>
+        </article>
+        <figure class="w-1/2" id="canvasContainer">
+            <canvas id="figureCanvas"></canvas>
+        </figure>
+    </main>
+
+    <script type="module" src="/scripts/stars.js"></script>
+    <script type="module" src="/scripts/earth.js"></script>
+
+    <main id="overlay_index">
+        <article>
+            <h1><strong>Welcome To Arvin's Song & Book Recommendation Website!</strong></h1>
+            <p>You Can Sign Up or Log In Below To See What Songs
+                <br>&<br>
+                Books Have Been Recommended In Countries Around The World.</p>
+            <button class="buttons" id="index_sign_up"
+                    onclick="window.location.href = 'sign_up.html'">Sign Up</button>
+            <button class="buttons" id="index_login_button"
+                    onclick="window.location.href = 'log_in.html'">Log In</button>
+        </article>
+    </main>
+
+</body>
+</html>

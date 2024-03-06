@@ -1,0 +1,208 @@
+@import 'normalize.css';
+
+body {
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: larger;
+    overflow: hidden;
+}
+#overlay_signup, #overlay_login {
+    position: absolute;
+    top: 70px;
+    left: 50px;
+}
+
+#overlay_index {
+    position: absolute;
+    top: 140px;
+    left: 90px;
+}
+
+#overlay_index_list_pages {
+    position: absolute;
+    top: 50px;
+    left: 90px;
+}
+
+#overlay_index, #overlay_index_list_pages, article {
+    color: oldlace;
+    text-align: center;
+    user-select: none;
+    line-height: 2.5;
+    text-shadow: 2px 2px 2px #727173;
+}
+
+#book_article, #song_article {
+    margin-left: 150px;
+    margin-top: 40px;
+    position: absolute;
+}
+
+.buttons {
+    background-color: lightslategrey;
+    color: oldlace;
+    padding: 5px 40px;
+    border: none;
+    border-radius: 60px;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: 1s ease-in-out;
+    text-shadow: 3px 3px 2px #312e2f;
+    font-size: 18px;
+}
+
+#index_login_button {
+    margin-left: 50px;
+}
+
+#signup_button, #login_button {
+    margin-left: 210px;
+    padding: 15px 40px;
+    font-size: 18px;
+}
+
+#book_recommend, #song_recommend {
+    width: 190px;
+    margin-left: 160px;
+    padding: 15px 40px;
+    font-size: 18px;
+}
+
+#back_button {
+    width: 145px;
+    margin-left: 50px;
+    padding: 15px 40px;
+    font-size: 18px;
+}
+
+#back_button_book_rec, #back_button_song_rec {
+    width: 190px;
+    margin-left: 50px;
+    padding: 15px 40px;
+    font-size: 18px;
+}
+
+.buttons:hover {
+    scale: 1.15;
+}
+
+#signup_form, #login_form {
+    color: oldlace;
+    user-select: none;
+    text-shadow: 2px 2px 2px #727173;
+}
+
+#book_form, #song_form {
+    color: oldlace;
+    user-select: none;
+    text-shadow: 2px 2px 2px #727173;
+    margin-top: 120px;
+}
+
+#login_form_div {
+    margin-top: 100px;
+}
+
+input[type="text"], input[type="email"], input[type="password"], #country{
+    padding: 5px;
+    margin: 10px;
+    color: lightslategrey;
+    text-shadow: 3px 3px 2px #727173;
+    font-size: 25px;
+    transition: 1s ease-in-out;
+    width: max-content;
+    text-decoration: none;
+    background: linear-gradient(oldlace, oldlace) center bottom 5px /calc(100% - 10px) 1px no-repeat;
+}
+
+label {
+    display: inline-block;
+    width: 150px;
+    text-align: right;
+    margin: 30px;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, #country:focus {
+    outline: none;
+}
+
+#song-description, #book-description {
+    background-color: transparent;
+    border: 1px solid oldlace;
+    margin-top: 40px;
+    text-decoration: none;
+    padding: 10px;
+    color: lightslategrey;
+    text-shadow: 3px 3px 2px #727173;
+    outline: none;
+    vertical-align: top;
+}
+
+.input:hover {
+    scale: 1.05;
+}
+
+.fa-eye {
+    font-size: smaller;
+}
+
+.error-message {
+    color: darkred;
+    text-shadow: none;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.general-error-message {
+    color: darkred;
+    text-shadow: none;
+    font-weight: bold;
+    margin-left: 230px;
+}
+
+#decision_article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#decision_welcome_element {
+    font-size: larger;
+    margin-bottom: 40px;
+}
+
+#general-message {
+    margin-top: 30px;
+}
+
+#decision_book_recommendation, #decision_book_display {
+    margin-right: 30px;
+    width: 310px;
+}
+
+#decision_song_recommendation, #decision_song_display {
+    width: 310px;
+}
+
+#dynamic_table_songs, #dynamic_table_books {
+    margin-top: 20px;
+    width: 100%;
+    display: none;
+}
+
+#dynamic_table_songs tr,
+#dynamic_table_books tr {
+    border: 1px solid white;
+    text-align: left;
+}
+
+#dynamic_table_songs th, #dynamic_table_songs td,
+#dynamic_table_books th, #dynamic_table_books td {
+    padding: 15px;
+}
+
+#table_container {
+    max-height: 540px;
+    overflow: auto;
+    margin-top: 10px;
+}
+
